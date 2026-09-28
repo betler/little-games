@@ -16,6 +16,8 @@
     --c4-a: #E63946;
     --c4-b: #FFD23F;
     --gts: #4ECDC4;
+    --et-from: #FF7A33;
+    --et-to: #34A853;
   }
   * { box-sizing: border-box; }
   body {
@@ -51,6 +53,9 @@
   }
   @media (max-width: 620px) {
     .tiles { grid-template-columns: 1fr; justify-items: center; }
+  }
+  @media (min-width: 621px) {
+    .tiles a.tile:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; }
   }
   a.tile {
     background: var(--card);
@@ -112,6 +117,33 @@
     background: var(--gts);
     border-radius: 8px 0 0 8px;
   }
+
+  /* Euro Trucker visual: a route from start to delivery */
+  .et-route {
+    width: 100%;
+    height: 44px;
+    border-radius: 8px;
+    background: #2C3061;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+  }
+  .et-route .stop {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--muted);
+    flex: none;
+  }
+  .et-route .stop.from { background: var(--et-from); }
+  .et-route .stop.to { background: var(--et-to); }
+  .et-route .leg {
+    flex: 1;
+    height: 0;
+    border-top: 3px dashed var(--muted);
+    opacity: 0.6;
+    margin: 0 6px;
+  }
 </style>
 </head>
 <body>
@@ -135,6 +167,14 @@
       <div class="gts-bar"><div></div></div>
       <h2>Guess the Size</h2>
       <p>Look at the bar and guess how full it is.</p>
+    </a>
+
+    <a class="tile" href="euro-trucker/euro-trucker.html">
+      <div class="et-route">
+        <span class="stop from"></span><span class="leg"></span><span class="stop"></span><span class="leg"></span><span class="stop to"></span>
+      </div>
+      <h2>Euro Trucker</h2>
+      <p>Plan the shortest haul across Europe, border by border.</p>
     </a>
 
   </div>
